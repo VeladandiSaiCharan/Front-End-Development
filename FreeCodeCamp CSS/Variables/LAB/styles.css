@@ -1,0 +1,60 @@
+:root {
+    --color0: darkgreen;
+    --color1: green;
+    --color2: lightgreen;
+    --color3: grey;
+    --color4: lightgrey;
+    --color5: white;
+    --solid-border: black;
+    --dashed-border: black;
+}
+
+.available-0 {
+    background-color: var(--color0);
+}
+
+.available-1 {
+    background-color: var(--color1);
+}
+
+.available-2 {
+    background-color: var(--color2);
+}
+
+.available-3 {
+    background-color: var(--color3);
+}
+
+.available-4 {
+    background-color: var(--color4);
+}
+
+.available-5 {
+    background-color: var(--color5);
+}
+
+.sharp td {
+    border-bottom: var(--solid-border);
+}
+
+.half td {
+    border-bottom: var(--dashed-border);
+}
+
+#legend-gradient {
+    background-image: linear-gradient(
+        right,
+        var(--color0) 0%,
+        var(--color0) 16%,
+        var(--color1) 16%,
+        var(--color1) 32%,
+        var(--color2) 32%,
+        var(--color2) 48%,
+        var(--color3) 48%,
+        var(--color3) 64%,
+        var(--color4) 64%,
+        var(--color4) 80%,
+        var(--color5) 80%,
+        var(--color5) 96%
+    );
+}
