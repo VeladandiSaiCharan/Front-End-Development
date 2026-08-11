@@ -77,3 +77,6 @@ function getEVAReadyCrew(crew) {
   return eligible;
 }
 
+const EVAReadySquad = getEVAReadyCrew(updatedSquad);
+
+function chunkCrew(crew, size) {}
