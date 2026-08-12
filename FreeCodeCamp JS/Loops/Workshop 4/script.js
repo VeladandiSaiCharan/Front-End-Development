@@ -24,11 +24,28 @@ const rawCatalogCards = [
 function parseCard(rawString) {
     const parts = rawString.split("|");
     const trimmedParts = [];
-    for (let part of parts) {
-        trimmedParts.push(part.trim());
+    for (let i = 0; i < parts.length; i++) {
+        trimmedParts.push(parts[i].trim());
     }
-    return parts;
+    const title = trimmedParts[0] || "Unknown";
+    const author = trimmedParts[1] || "Unknown";
+    const year = trimmedParts[2];
+    const location = trimmedParts[3] || "Unknown";
+    return {
+        title: title,
+        author: author,
+        year: year,
+        location: location
+    };
 }
 
-const cardResult = parseCard(rawCatalogCards[2]);
-console.log(cardResult);
+function parseCatalog(rawCards) {
+    const catalog = [];
+    for (let i = 0; i < rawCards.length; i++) {
+        const card = parseCard(rawCards[i]);
+        catalog.push(card);
+    }
+    return catalog;
+}
+
+const catalog = parseCatalog(rawCatalogCards);
