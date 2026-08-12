@@ -49,3 +49,52 @@ function parseCatalog(rawCards) {
 }
 
 const catalog = parseCatalog(rawCatalogCards);
+
+function findByAuthor(catalog, author) {
+    const searchTerm = author.toLowerCase();
+    const results = [];
+    for (let i = 0; i < catalog.length; i++) {
+        if (catalog[i].author.toLowerCase().includes(searchTerm)) {
+            results.push(catalog[i]);
+        }
+    }
+    return results;
+}
+
+function groupByDecade(catalog) {
+    const grouped = {};
+    for (let i = 0; i < catalog.length; i++) {
+        const book = catalog[i];
+        if (book.year === "Unknown") {
+            if (grouped["Unknown"] === undefined) {
+                grouped["Unknown"] = [];
+            }
+            grouped["Unknown"].push(book);
+            continue;
+        }
+        const decade = Math.floor(book.year / 10) * 10;
+        const decadeKey = `${decade}s`;
+        if (!grouped[decadeKey]) {
+            grouped[decadeKey] = [];;
+        }
+        grouped[decadeKey].push(book);
+    }
+    return grouped;
+}
+const byDecade = groupByDecade(catalog);
+
+
+function renderEntry(entry) {
+    const title = entry.title || Unknwon;
+    const author = entry.author || Unknwon;
+    const year = entry.year || Unknwon;
+    const location = entry.location || Unknwon;
+    return `
+    ${"-".repeat(25)}
+    Title: ${title}
+    Author: ${author}
+    Year: ${year}
+    Location: ${location}
+    ${"-".repeat(25)}`;
+}
+console.log(renderEntry(catalog[0]));
