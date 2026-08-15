@@ -53,3 +53,30 @@ function handleGateAtTick(gates, gate, tickIndex, throughputSummary) {
     rerouteOverflow(gates, gate, tickIndex, result.overflow);
   }
 }
+
+function printSummary(summary) {
+  console.log("\nThroughput Summary");
+
+  for (const gate in summary) {
+    console.log(gate + ": " + summary[gate] + " attendees processed");
+  }
+}
+
+function simulateFestival(gates, timeBlock) {
+  console.log("\n" + timeBlock + " Simulation");
+  const throughputSummary = initializeThroughput(gates);
+  const maxTicks = gates[0].queue.length;
+  let tickIndex = 0;
+
+  while(tickIndex < maxTicks) {
+    console.log("\nTick " + (tickIndex + 1));
+    for (const gate of gates) {
+      handleGateAtTick(gates, gate, tickIndex, throughputSummary);
+    }
+    tickIndex++;
+  }
+  printSummary(throughputSummary);
+}
+
+simulateFestival(morningGates, "Morning");
+simulateFestival(nightGates, "Night");
