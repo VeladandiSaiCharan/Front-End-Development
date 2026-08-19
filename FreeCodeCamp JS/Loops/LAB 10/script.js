@@ -1,6 +1,6 @@
-function isPalindrom(word) {
+function isPalindrome(word) {
     const lowerWord = word.toLowerCase();
-    const reverseWord = lowerWord.spli("").reverse().join("");
+    const reverseWord = lowerWord.split("").reverse().join("");
 
     if (lowerWord === reverseWord) {
         return true;
@@ -45,4 +45,24 @@ function findRepeatedPhrases(words, phraseLength) {
         }
     }
     return result;
+}
+
+function analyzeTexts(texts, phraseLength) {
+    if (texts.length === 0) {
+        return [];
+    }
+    const results = [];
+
+    for (let i = 0; i < texts.length; i++) {
+        const words = texts[i];
+
+        const palindromeBreaks = findPalindromeBreaks(words);
+        const repeatedPhrases = findRepeatedPhrases(words, phraseLength);
+
+        results.push({
+            palindromeBreaks,
+            repeatedPhrases
+        });
+    }
+    return results;
 }
